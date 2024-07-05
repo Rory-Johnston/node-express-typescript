@@ -1,7 +1,7 @@
 import rateLimit from "express-rate-limit";
 import { logger } from "../config/winston";
 
-const validatedUnauthorised = rateLimit({
+const ratelimit = rateLimit({
   windowMs: 10 * 1000,
   max: 10,
   standardHeaders: true,
@@ -13,4 +13,4 @@ const validatedUnauthorised = rateLimit({
   },
 });
 
-export default validatedUnauthorised;
+export default ratelimit;

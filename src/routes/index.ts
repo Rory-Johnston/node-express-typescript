@@ -1,10 +1,10 @@
 import express from "express";
 import { logger } from "../config/winston";
-import validatedUnauthorised from "../middleware/standard";
+import ratelimit from "../middleware/ratelimit";
 
 const router = express.Router();
 
-router.use(validatedUnauthorised);
+router.use(ratelimit);
 
 router.get("/status", (req, res) => {
   logger.info("Status request received");
