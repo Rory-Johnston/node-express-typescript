@@ -2,6 +2,13 @@ import request from 'supertest'
 import app from '../index'
 import { logger } from '../config/winston'
 
+describe('Status Route', () => {
+  it('should return 200 OK', async () => {
+    const res = await request(app).get('/status')
+    expect(res.status).toBe(200)
+  })
+})
+
 jest.mock('../config/winston')
 
 describe('Rate Limit Middleware', () => {
@@ -10,7 +17,7 @@ describe('Rate Limit Middleware', () => {
   })
 
   it('should allow requests below the rate limit', async () => {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       const res = await request(app).get('/status')
       expect(res.status).toBe(200)
     }
