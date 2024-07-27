@@ -19,3 +19,5 @@ app.use("/", router);
 app.listen(port, () => {
   logger.info(`Server is running at http://localhost:${port}`);
 });
+
+export default app;
