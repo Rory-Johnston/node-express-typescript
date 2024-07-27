@@ -1,18 +1,18 @@
-import winston from "winston";
+import winston from 'winston'
 
 const logFormat = winston.format.combine(
   winston.format.timestamp({
-    format: "YYYY-MM-DD HH:mm:ss",
+    format: 'YYYY-MM-DD HH:mm:ss',
   }),
   winston.format.errors({ stack: true }),
   winston.format.splat(),
   winston.format.printf(
-    (info: any) => `${info.timestamp} [${info.level}]: ${info.message}`
+    (info) => `${info.timestamp} [${info.level}]: ${info.message}`
   )
-);
+)
 
 const logger = winston.createLogger({
-  level: "info",
+  level: 'info',
   format: logFormat,
   transports: [
     new winston.transports.Console({
@@ -22,6 +22,6 @@ const logger = winston.createLogger({
       ),
     }),
   ],
-});
+})
 
-export { logger };
+export { logger }

@@ -1,5 +1,5 @@
-import rateLimit from "express-rate-limit";
-import { logger } from "../config/winston";
+import rateLimit from 'express-rate-limit'
+import { logger } from '../config/winston'
 
 const ratelimit = rateLimit({
   windowMs: 10 * 1000,
@@ -7,10 +7,10 @@ const ratelimit = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   handler: (req, res) => {
-    res.status(429).send({ error: "Too many requests" });
-    var ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-    logger.warn(`A rate limit has been reached from: ${ip}`);
+    res.status(429).send({ error: 'Too many requests' })
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+    logger.warn(`A rate limit has been reached from: ${ip}`)
   },
-});
+})
 
-export default ratelimit;
+export default ratelimit
